@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Techno Bundle · نسخه ۱۰</title>
+  <meta name="description" content="سامانه طراحی مدل فروش محصولات کارتخوان توسن تکنو">
+  <meta name="theme-color" content="#004a8f">
+  <meta name="color-scheme" content="light">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48.png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="is-splash">
+
+  <div id="splash" role="status" aria-live="polite">
+    <img src="assets/logo.png" alt="لوگوی توسن تکنو" width="168" height="168">
+    <h1>سامانه طراحی مدل فروش محصولات کارتخوان توسن تکنو</h1>
+    <p>مهدی نامدار · نسخه ۱۰</p>
+    <div class="splash-bar" aria-hidden="true"><span></span></div>
+  </div>
+
+  <noscript><p class="noscript">برای استفاده از این برنامه، جاوااسکریپت باید فعال باشد.</p></noscript>
+
+  <header class="topbar no-print">
+    <div class="brand">
+      <img src="assets/logo.png" alt="" width="44" height="44">
+      <div>
+        <h1>Techno Bundle</h1>
+        <span>سامانه طراحی مدل فروش محصولات کارتخوان توسن تکنو</span>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="نقش کاربر">
+      <button role="tab" id="tab-admin" aria-controls="view-admin" data-tab="admin">مدیر</button>
+      <button role="tab" id="tab-bundles" aria-controls="view-bundles" data-tab="bundles">باندل‌های تولیدشده</button>
+      <button role="tab" id="tab-formulas" aria-controls="view-formulas" data-tab="formulas">فرمول‌ها</button>
+      <button role="tab" id="tab-broker" aria-controls="view-broker" data-tab="broker">کارگزار</button>
+    </nav>
+    <div class="topbar-end">
+      <span id="net" class="net" hidden>آفلاین</span>
+      <button id="updateBtn" class="btn btn-primary" hidden>به‌روزرسانی برنامه</button>
+      <button id="installBtn" class="btn btn-ghost" hidden>نصب برنامه</button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ================= ADMIN ================= -->
+    <section id="view-admin" role="tabpanel" aria-labelledby="tab-admin" hidden>
+      <div class="admin-grid">
+
+        <aside class="settings no-print" aria-label="تنظیمات مدل">
+          <div class="panel-head">
+            <h2>تنظیمات مدل</h2>
+            <p>همه مبالغ به تومان و عدد صحیح‌اند. بهای تمام‌شده و سود کارتخوان نو در این مدل وارد نمی‌شود.</p>
+          </div>
+          <form id="settingsForm" autocomplete="off" novalidate></form>
+          <dl class="derived" id="derived" aria-live="polite"></dl>
+          <div class="settings-actions">
+            <button type="button" class="btn" id="resetBtn">بازنشانی به پیش‌فرض</button>
+            <button type="button" class="btn btn-danger" id="clearBtn">پاک‌کردن همه داده‌ها</button>
+          </div>
+        </aside>
+
+        <div class="admin-main">
+          <div id="settingsErrors" class="alert alert-error no-print" role="alert" hidden></div>
+
+          <section class="priorities no-print" aria-labelledby="prioTitle">
+            <div class="panel-head">
+              <h2 id="prioTitle">اولویت رتبه‌بندی</h2>
+              <p>باندل‌ها به ترتیب این معیارها مرتب می‌شوند. با دکمه‌های بالا و پایین ترتیب را تغییر دهید.</p>
+            </div>
+            <ol id="prioList"></ol>
+          </section>
+
+          <section class="to-bundles no-print" aria-labelledby="toBundlesTitle">
+            <div class="panel-head">
+              <h2 id="toBundlesTitle">باندل‌های تولیدشده</h2>
+              <p id="adminSummary" class="muted"></p>
+            </div>
+            <button type="button" class="btn btn-primary" id="goBundles">مشاهده و تحلیل باندل‌ها</button>
+          </section>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= BUNDLES ================= -->
+    <section id="view-bundles" role="tabpanel" aria-labelledby="tab-bundles" hidden>
+      <div class="bundles-page">
+        <section class="bundles" aria-labelledby="tblTitle">
+          <div class="table-bar">
+            <div>
+              <h2 id="tblTitle">باندل‌های تولیدشده</h2>
+              <p id="tblSummary" class="muted"></p>
+            </div>
+            <div class="table-actions no-print">
+              <button class="btn" id="pubAllBtn">انتشار همه</button>
+              <button class="btn" id="unpubAllBtn">لغو انتشار همه</button>
+              <button class="btn" id="csvBtn">خروجی CSV</button>
+              <button class="btn" id="printBtn">چاپ / ذخیره PDF</button>
+              <button class="btn btn-primary" id="shareBtn">لینک برای کارگزار</button>
+            </div>
+          </div>
+          <div id="stats" class="stats no-print" aria-live="polite"></div>
+          <div class="filter-bar no-print">
+            <label class="chk"><input type="checkbox" id="onlyPub"> فقط منتشرشده‌ها</label>
+            <div id="chips" class="chips"></div>
+            <button class="btn btn-sm" id="clearFilters" hidden>پاک‌کردن همه فیلترها و مرتب‌سازی</button>
+          </div>
+          <div id="staleNote" class="alert alert-warn no-print" hidden></div>
+          <div class="table-wrap">
+            <table id="bundleTable">
+              <thead>
+                <tr id="headRow"></tr>
+              </thead>
+              <tbody id="bundleRows"></tbody>
+            </table>
+          </div>
+          <p id="emptyState" class="empty" hidden></p>
+          <div class="more no-print"><button class="btn" id="moreBtn" hidden></button></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ================= FORMULAS ================= -->
+    <section id="view-formulas" role="tabpanel" aria-labelledby="tab-formulas" hidden>
+      <div class="formulas" id="formulasBody"></div>
+    </section>
+
+    <!-- ================= BROKER ================= -->
+    <section id="view-broker" role="tabpanel" aria-labelledby="tab-broker" hidden>
+      <div class="broker">
+        <div class="broker-ask">
+          <label for="brokerBudget">بودجه شما برای خرید</label>
+          <div class="input-wrap">
+            <input id="brokerBudget" type="text" inputmode="numeric" dir="rtl" placeholder="مثلاً ۱۶۰,۰۰۰,۰۰۰" autocomplete="off">
+            <span class="unit">تومان</span>
+          </div>
+          <p id="brokerHint" class="muted"></p>
+        </div>
+        <div id="brokerResult" aria-live="polite"></div>
+        <div class="broker-foot no-print">
+          <button class="btn" id="brokerPrint">چاپ / ذخیره PDF</button>
+          <button class="btn btn-danger" id="brokerClear">پاکسازی داده‌ها</button>
+          <button class="btn btn-ghost" id="offerClear" hidden>حذف پیشنهاد ذخیره‌شده و بازگشت به حالت مدیر</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer no-print">طراحی مدل: مهدی نامدار · Techno Bundle نسخه ۱۰ · داده‌ها فقط روی همین دستگاه ذخیره می‌شوند.</footer>
+
+  <!-- dialogs -->
+  <dialog id="detailsDialog" aria-labelledby="detailsTitle">
+    <div class="dlg-head">
+      <h2 id="detailsTitle"></h2>
+      <button class="icon-btn" data-close aria-label="بستن"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></button>
+    </div>
+    <div id="detailsBody" class="dlg-body"></div>
+  </dialog>
+
+  <dialog id="confirmDialog" aria-labelledby="confirmTitle">
+    <form method="dialog" class="dlg-body">
+      <h2 id="confirmTitle"></h2>
+      <p id="confirmMsg"></p>
+      <div class="dlg-actions">
+        <button value="cancel" class="btn">انصراف</button>
+        <button value="ok" class="btn btn-danger" id="confirmOk">تأیید</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="shareDialog" aria-labelledby="shareTitle">
+    <div class="dlg-head">
+      <h2 id="shareTitle">لینک پیشنهاد برای کارگزار</h2>
+      <button class="icon-btn" data-close aria-label="بستن"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></button>
+    </div>
+    <div class="dlg-body">
+      <p id="shareInfo"></p>
+      <textarea id="shareText" readonly rows="5" dir="ltr" aria-label="لینک پیشنهاد"></textarea>
+      <div class="dlg-actions">
+        <button class="btn btn-primary" id="shareCopy">کپی لینک</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="colMenu" class="col-menu no-print" role="dialog" aria-label="فیلتر ستون" hidden></div>
+
+  <div id="toast" class="toast no-print" role="status" aria-live="polite" hidden></div>
+
+  <script src="js/core.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

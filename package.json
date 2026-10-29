@@ -1,0 +1,11 @@
+{
+  "name": "techno-bundle",
+  "version": "10.0.0",
+  "private": true,
+  "description": "Techno Bundle v10 — Persian RTL static PWA for designing Tosan Techno POS bundles",
+  "scripts": {
+    "test": "node --test tests/core.test.js tests/core.fuzz.test.js",
+    "check": "node scripts/check.js",
+    "verify": "node --test tests/core.test.js tests/core.fuzz.test.js && node scripts/check.js"
+  }
+}

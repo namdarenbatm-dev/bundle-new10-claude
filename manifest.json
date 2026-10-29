@@ -1,0 +1,19 @@
+{
+  "id": "./",
+  "name": "Techno Bundle – سامانه طراحی مدل فروش محصولات کارتخوان توسن تکنو",
+  "short_name": "Techno Bundle",
+  "description": "طراحی باندل فروش کارتخوان نو همراه با محصول محرک (کش‌لس یا کارتخوان دست‌دوم) — نسخه ۱۰",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#004a8f",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
